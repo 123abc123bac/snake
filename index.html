@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,body {
+            height: 100%;
+        }
+        body {
+            background: url(./贪吃蛇小游戏背景.png) no-repeat;
+            background-size: cover;
+        }
+        .btnbox {
+            width: 200px;
+            height: 300px;
+            margin-top: 100px;
+      /*      background: orange;      */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            position: fixed;
+/*             top: 50%;
+            transform: translateY(-50%); */
+        }
+        .btnbox button {
+            width: 100px;
+            height: 50px;
+            font-size: 23px;
+            background: orange;
+            color: white;
+            border-radius: 10px;
+        }
+        .map {
+            width: 1000px;
+            height: 600px;
+            background: url(./游戏背景.png);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0px 0px 100px black inset, 0px 0px 30px white;
+        }
+        .map>div {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px yellow;
+        }
+        div.head {
+            background: radial-gradient(#ffc000,#ff4e00);
+        }
+        div.body {
+            background: radial-gradient(#fff369,#fa791a);
+        }
+        div.food {
+            background: radial-gradient(#a7fa64,#4f8524);
+            animation: foodAnimate 1s linear infinite;
+
+        }
+        @keyframes foodAnimate{
+            0%{
+                box-shadow: 0px 0px 10px white;
+            }
+            50%{
+                box-shadow: 0px 0px 100px yellowgreen;
+            }
+            100%{
+                box-shadow: 0px 0px 10px white;
+            }
+        }
+        .score{
+            font-size: 25px;
+            color: white;
+
+        }
+        .score span {
+            color: red;
+            font-weight: bold;
+            padding-left: 8px;
+        }
+        .endimg {
+            display: none;
+            width: 1000px;
+            height: 600px;
+            background: rgba(0, 0, 0, 0.8) url(./覆盖.png) no-repeat;
+            background-size: 800px;
+            background-position: center;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="endimg"></div>
+    <div class="btnbox">
+        <div class="score">得分:<span>0</span></div>
+        <button id="start">开始</button>
+        <button id="pause">暂停</button>
+        <button id="restart">重新开始</button>
+    </div>
+    <div class="map">
+    </div>
+
+
+    <script src="./food.js"></script>
+    <script src="./snake.js"></script>
+    <script src="./game.js"></script>
+    <script>
+        const game = new Game(".map", ".score span", ".endimg", "#start")
+        const start = document.querySelector("#start")
+        const pause = document.querySelector("#pause")
+        const restart = document.querySelector("#restart")
+        start.onclick = function(){
+            game.start()
+        }
+        pause.onclick = function(){
+            game.pause()
+        }
+        restart.onclick = function(){
+            game.restart()
+        }
+
+        document.onkeydown = function(e){
+            switch(e.keyCode){
+                case 37:
+                    game.change("left")
+                    break;
+                case 38:
+                    game.change("top")
+                    break;
+                case 39:
+                    game.change("right")
+                    break;
+                case 40:  
+                    game.change("bottom")
+                    break;
+                case 13:
+                    game.start()
+                    break;
+                case 32:
+                    game.pause()
+                default:
+                    break;
+            }
+
+        }
+    </script>
+</body>
+</html>
