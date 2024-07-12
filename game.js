@@ -11,7 +11,6 @@ class Game{
         this.count = 0
     }
     start(){
-        this.gameoverimg.style.display = "none"
         this.timer = setInterval(() => {
             this.snake.move()
             if(this.snake.isEat(this.food.x, this.food.y)){
@@ -46,7 +45,8 @@ class Game{
         this.scoreEle.innerText = this.count
     }
     gameover(){
-        this.gameoverimg.style.display = "block"
+        this.gameoverimg.style.width = "1000px"
+        this.gameoverimg.style.height = "600px"
         this.btnstart.disabled = true
     }
 }
