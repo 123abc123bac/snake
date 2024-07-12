@@ -18,5 +18,8 @@ class Food{
         this.y = n2*20
         this.food.style.left = this.x + "px"
         this.food.style.top = this.y + "px"
+        let zhi = ['radial-gradient(#ffc000,#ff4e00)', 'radial-gradient(aqua, blue)', 'radial-gradient(orange, red)', 'radial-gradient(#a7fa64,#4f8524)', 'radial-gradient(pink, purple)']
+        let ran = Math.floor(Math.random() * zhi.length)
+        this.food.style.background = zhi[ran]
     }
 }
