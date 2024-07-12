@@ -138,17 +138,21 @@
         }
 
         document.onkeydown = function(e){
-            switch(e.keyCode){
-                case 37:
+            switch(e.key){
+                case 'a':
+                case 'ArrowLeft':
                     game.change("left")
                     break;
-                case 38:
+                case 'w':
+                case 'ArrowUp':
                     game.change("top")
                     break;
-                case 39:
+                case 'd':
+                case 'ArrowRight':
                     game.change("right")
                     break;
-                case 40:  
+                case 's':
+                case 'ArrowDown':
                     game.change("bottom")
                     break;
                 case 13:
