@@ -49,6 +49,18 @@ class Snake{
         }
     }
     move(){
+        const head = this.snakelist[0]
+        const headX = head.offsetLeft
+        const headY = head.offsetTop
+        if (headX < 0) {
+            head.style.left = '1000px'
+        } else if (headY < 0) {
+            head.style.top = '600px'
+        } else if (headX >= this.map.clientWidth) {
+            head.style.left = '0px'
+        } else if (headY >= this.map.clientHeight) {
+            head.style.top = '0px'
+        }
         const body = this.snakelist.pop()
         body.remove()
         this.createHead()
@@ -81,9 +93,9 @@ class Snake{
 
         //结束
 
-        if(headX < 0 || headY < 0 || headX >= this.map.clientWidth ||headY >= this.map.clientHeight){
+/*         if(headX < 0 || headY < 0 || headX >= this.map.clientWidth ||headY >= this.map.clientHeight){
             return true
-        }
+        } */
         return false
     }
 }
